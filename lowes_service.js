@@ -69,38 +69,32 @@
 	}
 	
 	function removeLine(line, file){
-		try{
-			let data = fs.readFileSync(file, 'utf-8');
-			let dataSplit = data.split("\r");
-			let counter = 0;
-			var ip = line;
-			for (let i = 0; i < dataSplit.length; i++){
-				let fileLine = "";
-				console.log(dataSplit[i]+ " and " + ip);
-				//console.log(fileLine + " and " + ip);
-				if (fileLine != ip && counter === 0){
-					fs.writeFile(file, fileLine + "\r", function (err) {
-					  if (err) throw err;
-					});
+		console.log("writing");
+		let data = fs.readFileSync(file+".txt", "utf8");
+		let dataSplit = data.split("\r");
+		let counter = 0;
+		
+		for (let i = 0; i < dataSplit.length; i++){
+			if (dataSplit[i] !== line){
+				if (counter === 0){
+					fs.writeFile(file+"1.txt", dataSplit[i], function (err) {
+						if (err) throw err;
+						console.log('Replaced!');
+					}); 
 					counter += 1;
 				}
-				else if (fileLine != ip){
-					fs.appendFile(file, fileLine + "\r", function(err){
-						if (err){
-							console.log(err);
-							res.status(400);
-						}
-					});	 
-				}
-				if (fileLine === ip){
-					console.log("MATCH");
+				else{
+					fs.appendFile(file+"1.txt", "\r" + dataSplit[i] , function (err) {
+						if (err) throw err;
+						//console.log('Updated!');
+					});
 				}
 			}
-			console.log('Saved!');
 		}
-		catch(e){
-			console.log(e);
-		}
+		// fs.rename(file+"1.txt", file+".txt", function (err) {
+			// if (err) throw err;
+			// console.log('File Renamed!');
+		// });
 	}
 	
 	const express = require("express");
@@ -126,7 +120,7 @@
 		let remove = req.query.remove;
 		if (remove === "true"){
 			let string = req.body.string;
-			removeLine(string, "lowes_info.txt");
+			removeLine(string, "lowes_info");
 		}
 		else{
 			//Location, Type, Brand, Item #, Item Name, Dyelot, Size
@@ -138,7 +132,7 @@
 			let dyelot = req.body.dyelot;
 			let size = req.body.size;
 			let palleteList = [location,type,brand,itemnum,itemname,dyelot,size];
-			fs.appendFile("public/lowes_info.txt", "\n" + parsePallete(palleteList), function(err){
+			fs.appendFile("lowes_info.txt", "\r" + parsePallete(palleteList), function(err){
 				if (err){
 					console.log(err);
 					res.status(400);
@@ -159,12 +153,12 @@
 		let remove = req.query.remove;
 		
 		//Gets the data regarding inventory and sends it
-		let filename1 = "public/lowes_info.txt";
+		let filename1 = "lowes_info.txt";
 		let info = {};
 		let data = getLowesInfo(filename1);
 		info["info"] = data;
 		
-		let filename2 = "public/user_info.txt";
+		let filename2 = "user_info.txt";
 		let logininfo = getLoginInfo(filename2)
 		info["login"] = logininfo;
 		
