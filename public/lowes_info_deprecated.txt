@@ -1,3 +1,0 @@
-tile,brand,product#,productname,location,dyelot,size
-ceramic,bestBrand,#0123123,bestBrandName,36L:4,A4,104
-porcelain,betterBrand,#666333,betterBrandName,39R:7,A4,500
