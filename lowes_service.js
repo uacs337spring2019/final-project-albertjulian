@@ -120,7 +120,7 @@
 		let remove = req.query.remove;
 		if (remove === "true"){
 			let string = req.body.string;
-			removeLine(string, "lowes_info");
+			removeLine(string, "public/lowes_info");
 		}
 		else{
 			//Location, Type, Brand, Item #, Item Name, Dyelot, Size
@@ -132,7 +132,7 @@
 			let dyelot = req.body.dyelot;
 			let size = req.body.size;
 			let palleteList = [location,type,brand,itemnum,itemname,dyelot,size];
-			fs.appendFile("lowes_info.txt", "\r" + parsePallete(palleteList), function(err){
+			fs.appendFile("public/lowes_info.txt", "\r" + parsePallete(palleteList), function(err){
 				if (err){
 					console.log(err);
 					res.status(400);
@@ -153,12 +153,12 @@
 		let remove = req.query.remove;
 		
 		//Gets the data regarding inventory and sends it
-		let filename1 = "lowes_info.txt";
+		let filename1 = "public/lowes_info.txt";
 		let info = {};
 		let data = getLowesInfo(filename1);
 		info["info"] = data;
 		
-		let filename2 = "user_info.txt";
+		let filename2 = "public/user_info.txt";
 		let logininfo = getLoginInfo(filename2)
 		info["login"] = logininfo;
 		
