@@ -91,10 +91,10 @@
 				}
 			}
 		}
-		// fs.rename(file+"1.txt", file+".txt", function (err) {
-			// if (err) throw err;
-			// console.log('File Renamed!');
-		// });
+		fs.rename(file+"1.txt", file+".txt", function (err) {
+			if (err) throw err;
+			console.log('File Renamed!');
+		});
 	}
 	
 	const express = require("express");
