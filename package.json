@@ -6,7 +6,7 @@
   "dependencies": {
 	"express": "^4.16.4",
 	"fs": "^0.0.1-security",
-	"bodyParser": "^1.18.3"
+	"body-parser": "^1.18.3"
 	},
 	"devDependencies": {},
   "scripts": {
