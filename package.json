@@ -1,0 +1,26 @@
+{
+  "name": "lowes",
+  "version": "1.0.0",
+  "description": "\"lowes_inventory\"",
+  "main": "lowes.js",
+  "dependencies": {
+	"express": "^4.16.4",
+	"fs": "^0.0.1-security",
+	"bodyParser": "^1.18.3",
+	"jsonParser": "^1.1.5"
+	},
+	"devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+	"start": "node lowes_service.js"
+  },
+  "keywords": [
+    "\"lowes\""
+  ],
+  "author": "\"Alberto Villarreal, Julian Arvizu\"",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "\"https://github.com/uacs337spring2019/final-project-albertjulian\""
+  }
+}
