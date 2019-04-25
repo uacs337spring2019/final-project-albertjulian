@@ -96,6 +96,7 @@
 		bigDiv.appendChild(pallet);
 		bigDiv.appendChild(aisles);
 		document.body.appendChild(bigDiv);
+		updateAisles();
 	}
 	/**
 	Creates a radio input given some text for the label, name that all the
@@ -245,6 +246,7 @@
 			 .catch(function(error) {
 				console.log(error);
 			 });
+		updateAisles();
 	}
 	/**
 	Applies the changes to entering the website proper
@@ -372,6 +374,7 @@
 			gridContainer.appendChild(row)
 			counter +=1;
 		}
+		
 		return gridContainer;
 	}
 	/**
@@ -469,7 +472,9 @@
 			else {
 				console.log("It stays");
 			}
+			updateAisles();
 		}
+		
 	}
 	/**
 	function that updates visually on the status of the aisles
@@ -488,6 +493,7 @@
             let info = json["info"];
 			//Go through all palletes and assign to grid
 			for (let i = 0; i < info.length; i++){
+				//console.log(info[i]);
 				//Gets location data to get specific grid item
 				let locsplit = info[i]["location"].split(":");
 				let aisleloc = locsplit[0]
