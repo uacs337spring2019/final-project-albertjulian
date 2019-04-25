@@ -1,0 +1,8 @@
+{
+"name": "Lowes_Inventory",
+"description": "A basic Lowes inventory of pallets",
+"repository": "https://github.com/uacs337spring2019/final-project-albertjulian",
+"logo": "https://rawgit.com/heroku/node-js-sample/master/public/node.svg"
+,
+"keywords": ["node", "express", "static"]
+}
